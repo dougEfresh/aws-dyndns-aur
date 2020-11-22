@@ -20,5 +20,5 @@ jobs:
       - name: Archive artifacts
         uses: actions/upload-artifact@v2
         with:
-          name: aws-dyndns-aur
-          path: *.zst
+          name: aws-dyndns
+          path: "*.zst"
