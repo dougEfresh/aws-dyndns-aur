@@ -9,14 +9,18 @@ name: build
 
 jobs:
   build:
-    name: Create Release
+    name: Build Package
     runs-on: ubuntu-latest
     container: archlinux:latest    
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
       - name: build
-        run: pacman -Syu base-devel git --noconfirm --overwrite '*' && sed -i '/E_ROOT/d' /usr/bin/makepkg && /usr/bin/makepkg  -sf --noconfirm && mv *.zst aws-dyndns.zst
+        run: |
+          pacman -Syu base-devel git --noconfirm --overwrite '*'
+          sed -i '/E_ROOT/d' /usr/bin/makepkg
+          /usr/bin/makepkg  -sf --noconfirm
+          mv -v  *.zst aws-dyndns-.zst        
       - name: Archive artifacts
         uses: actions/upload-artifact@v2
         with:
