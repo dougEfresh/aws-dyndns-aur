@@ -16,9 +16,9 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2
       - name: build
-        run: pacman -Syu base-devel git --noconfirm --overwrite '*' && sed -i '/E_ROOT/d' /usr/bin/makepkg && /usr/bin/makepkg  -sf --noconfirm
+        run: pacman -Syu base-devel git --noconfirm --overwrite '*' && sed -i '/E_ROOT/d' /usr/bin/makepkg && /usr/bin/makepkg  -sf --noconfirm && mv *.zst aws-dyndns.zst
       - name: Archive artifacts
         uses: actions/upload-artifact@v2
         with:
-          name: aws-dyndns
+          name: aws-dyndns-aur
           path: *.zst
